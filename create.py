@@ -2,7 +2,7 @@ import os
 
 print("""
     This is a CLI TailwindCSS 3.x Boilerplate Creator
-    Have fun!
+    Have fun! megageil
 
     """)
 
