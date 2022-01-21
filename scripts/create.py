@@ -31,15 +31,6 @@ code_css = """
 @tailwind utilities;
 """
 
-code_readme = f"""
-    <div align="center">
-        <img alt="Logo" src="PATH TO LOGO" width="100" />
-    </div>
-    <h1 align="center">
-        {project_name}
-    </h1>
-"""
-
 code_postcss = """
     module.exports = {
     plugins: {
@@ -60,19 +51,10 @@ def install_tailwind():
 def init_tailwind():
     init_tailwind = input("Do you want to initialise TailwindCSS? y/n: ")
     if init_tailwind == "y":
-        os.system("npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch")
-
-# def delete_template_path_line():
-#     with open("tailwind.config.js", "r+") as tailwind_config:
-#         new_tailwind_config = tailwind_config.readlines()
-#         tailwind_config.seek(0)
-#         for i in new_tailwind_config:
-#             if i != "content: [],":
-#                 tailwind_config.write(i)
-#         tailwind_config.truncate()
+        filename = os.path.join(dirname, "scripts", "tailwind-watch.bat")
+        os.system(f"start {filename}")
 
 def write_template_path(file_name, line_num, text):
-#    delete_template_path_line()
     lines = open(file_name, 'r+').readlines()
     lines[line_num] = text
     out = open(file_name, 'w')
@@ -89,10 +71,11 @@ def create_files():
     index_file.write(code_html)
     css_file1 = open("src/input.css", "w")
     css_file1.write(code_css)
-    readme_file = open("README.md", "w")
-    readme_file.write(code_readme)
     install_tailwind()
     write_template_path("tailwind.config.js", 1, 'content: ["./src/**/*.{html,js}"],')
+
+dirname = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.chdir(dirname)
 
 create_files()
 
