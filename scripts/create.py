@@ -1,8 +1,8 @@
 import os
 
 print("""
-    This is a CLI TailwindCSS 3.x Boilerplate Creator
-    Have fun! megageil
+    This is a Postcss TailwindCSS 3.x Boilerplate Creator
+    Have fun!
 
     """)
 
@@ -53,6 +53,8 @@ def init_tailwind():
     if init_tailwind == "y":
         filename = os.path.join(dirname, "scripts", "tailwind-watch.bat")
         os.system(f"start {filename}")
+    else:
+        exit
 
 def write_template_path(file_name, line_num, text):
     lines = open(file_name, 'r+').readlines()
